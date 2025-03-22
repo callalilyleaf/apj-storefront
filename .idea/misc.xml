@@ -17,6 +17,8 @@
         <option value="$PROJECT_DIR$/tutorial10-2/pom.xml" />
         <option value="$PROJECT_DIR$/tutorial11-1/pom.xml" />
         <option value="$PROJECT_DIR$/tutorial11-2/pom.xml" />
+        <option value="$PROJECT_DIR$/model/pom.xml" />
+        <option value="$PROJECT_DIR$/jms/pom.xml" />
       </list>
     </option>
   </component>

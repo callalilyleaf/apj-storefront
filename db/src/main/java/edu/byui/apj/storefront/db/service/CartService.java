@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class CartService {
@@ -61,6 +63,14 @@ public class CartService {
 
     public Cart saveCart(Cart cart){
         return cartRepository.save(cart);
+    }
+
+    public List<Cart> getCartsWithoutOrders() {
+        return cartRepository.findCartsWithoutOrders();
+    }
+
+    public void removeCart(String cartId) {
+        cartRepository.deleteById(cartId);
     }
 }
 
