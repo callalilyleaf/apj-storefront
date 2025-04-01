@@ -3,16 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <groupId>edu.byui.apj.storefront</groupId> <!-- This is the parent, no needs to add parent tag -->
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>model</module> V
-        <module>web</module> V
-        <module>api</module> V
-        <module>api-mongo</module> V
-        <module>db</module> v
+        <module>model</module>
+        <module>web</module>
+        <module>api</module>
+        <module>api-mongo</module>
+        <module>db</module>
         <module>jms</module>
     </modules>
     <properties>
