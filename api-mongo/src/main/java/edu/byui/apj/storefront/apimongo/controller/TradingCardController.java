@@ -51,7 +51,7 @@ public class TradingCardController {
         return ResponseEntity.ok(savedCard);
     }
 
-    // ✅ Update a trading card
+    // ✅ Update a trading card!
     @PutMapping("/{id}")
     public ResponseEntity<TradingCard> updateTradingCard(@PathVariable String id, @RequestBody TradingCard updatedCard) {
         return tradingCardRepository.findById(id)
