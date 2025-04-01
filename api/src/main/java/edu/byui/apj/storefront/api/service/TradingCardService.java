@@ -14,8 +14,9 @@ import org.springframework.core.io.ClassPathResource;
 import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.csv.CSVFormat;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class TradingCardService {
     private final List<TradingCard> tradingCards = new ArrayList<>();
 
@@ -45,7 +46,13 @@ public class TradingCardService {
         }
     } // Start from here: Create a method that sorts and filters based on parameters passed in and returns a list of TradingCards
 
-    public List<TradingCard> GetTradingCards(int page, int size){
+    public List<TradingCard> getAllTradingCards(){
+        return tradingCards;
+    }
+
+
+
+    public List<TradingCard> getTradingCardsBy (int page, int size){
         return tradingCards.stream()
                 .skip(page)
                 .limit(size)
