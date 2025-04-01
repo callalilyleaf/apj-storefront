@@ -9,7 +9,7 @@
         <version>3.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>edu.byui.apj.storefront</groupId> <!-- This is the parent, no needs to add parent tag -->
+    <groupId>edu.byui.apj.storefront</groupId>
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
