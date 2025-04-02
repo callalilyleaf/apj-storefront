@@ -5,9 +5,7 @@ import edu.byui.apj.storefront.api.model.TradingCard;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import org.springframework.core.io.ClassPathResource;
@@ -50,18 +48,44 @@ public class TradingCardService {
         return tradingCards;
     }
 
-
-
     public List<TradingCard> getTradingCardsBy (int page, int size){
         return tradingCards.stream()
-                .skip(page)
+                .skip((long) page * size)
                 .limit(size)
                 .collect(Collectors.toList());
     }
 
-    public List<TradingCard> GetFilteredTradingCards(BigDecimal minPrice, BigDecimal maxPrice, String specialty, String sort){
+    public List<TradingCard> getFilteredTradingCards(BigDecimal minPrice, BigDecimal maxPrice, String specialty, String sort){
+        List<TradingCard> filtered = tradingCards.stream()
+                .filter(card -> { // get all cards through filter
+                    boolean matches = true;
+                    if (minPrice != null) {
+                        matches &= card.getPrice().compareTo(minPrice) >= 0; // match &= condition -> matches = matches & condition;
+                    }
+                    if (maxPrice != null) {
+                        matches &= card.getPrice().compareTo(maxPrice) <= 0;
+                    }
+                    if (specialty != null && !specialty.isBlank()) {
+                        matches &= card.getSpecialty().equalsIgnoreCase(specialty); //.equalsIgnoreCase() -- Compares this String to another String, ignoring case considerations
+                    }
+                    return matches;
+                })
+                .toList();
 
+        if (sort != null && !sort.isBlank()){ // using Comparators to sort!!! Crazy!! sort is either name or price
+            if (sort.equalsIgnoreCase("name")){
+                filtered.sort(Comparator.comparing(TradingCard::getName, String.CASE_INSENSITIVE_ORDER));
+            }else if (sort.equalsIgnoreCase("price")){
+                filtered.sort(Comparator.comparing(TradingCard::getPrice));
+            }
+        }
+        return filtered;
     }
 
-        
+    public List<TradingCard> searchTradingCards(String query){
+        String lowerQuery = query.toLowerCase();
+        return tradingCards.stream()
+                .filter(card -> card.getName().toLowerCase().contains(lowerQuery) || card.getContribution().toLowerCase().contains(lowerQuery))
+                .toList();
+    }
 }
