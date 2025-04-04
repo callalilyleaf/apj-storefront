@@ -81,7 +81,7 @@ public class CartCleanupJob {
                 logger.info("Cart cleanup completed");
             }else{
                 logger.error("Cart clean up did not complete for 5 minutes");
-            }
+            } // comprehsion
         }catch (Exception ex){
             logger.error("Error during cart cleanup", ex);
         }

@@ -72,5 +72,15 @@ public class CartService {
     public void removeCart(String cartId) {
         cartRepository.deleteById(cartId);
     }
+
+    public Cart createCart(Cart cart) {
+        // Check if a cart with the same ID already exists
+        if (cartRepository.existsById(cart.getId())) {
+            throw new RuntimeException("Cart with this ID already exists");
+        }
+
+        // Save the new cart
+        return cartRepository.save(cart);
+    }
 }
 
