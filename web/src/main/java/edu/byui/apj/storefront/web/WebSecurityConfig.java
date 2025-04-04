@@ -16,9 +16,9 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/index.html", "/login.html", "/perform-login", "/perform-logout", "/user/me").permitAll()
-                        .anyRequest().authenticated()
-
+                        // This 2 lines ask the authentication for user-profile.html. Any other things than that will be allowed
+                        .requestMatchers("user-profile.html").authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login.html")
